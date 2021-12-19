@@ -3,10 +3,6 @@ import Cell from './Cell'
 import './HabitRow.css'
 
 import {
-    Paper, 
-    Table,  
-    TableContainer,
-    TableHead,
     TableRow,
     TableCell,
     TableBody
@@ -15,16 +11,16 @@ import {
 const HabitRow = (props) => {
     const habits = props.habits
     return (
-            habits.map(habit => 
+            habits.map(habit =>
             <TableRow>
                 <TableCell key={habit.id}>{habit.title}</TableCell>
-                <TableCell><Cell key={habit.id+0.1}>{habit.day['sun']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.2}>{habit.day['mon']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.3}>{habit.day['tue']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.4}>{habit.day['wed']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.5}>{habit.day['thu']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.6}>{habit.day['fri']}</Cell></TableCell>
-                <TableCell><Cell key={habit.id+0.7}>{habit.day['sat']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='mon'>{habit['mon']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='tue'>{habit['tue']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='wed'>{habit['wed']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='thu'>{habit['thu']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='fri'>{habit['fri']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='sat'>{habit['sat']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='sun'>{habit['sun']}</Cell></TableCell>
             </TableRow>)
     )
 }

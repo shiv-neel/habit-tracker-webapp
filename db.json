@@ -1,28 +1,26 @@
-{"data": [
+{
+  "habits": [
     {
-    "id": 0,
-    "title": "Read for 30 minutes",
-    "day": {
-        "mon": "Incomplete",
-        "tue": "Incomplete",
-        "wed": "Incomplete",
-        "thu": "Incomplete",
-        "fri": "Incomplete",
-        "sat": "Incomplete",
-        "sun": "Incomplete"
-    }
+      "id": 0,
+      "title": "Read for 30 minutes",
+      "mon": "Incomplete",
+      "tue": "Complete",
+      "wed": "Incomplete",
+      "thu": "Complete",
+      "fri": "Incomplete",
+      "sat": "Complete",
+      "sun": "Incomplete"
     },
     {
-        "id": 1,
-        "title": "Run a mile",
-        "day": {
-            "mon": "Incomplete",
-            "tue": "Incomplete",
-            "wed": "Incomplete",
-            "thu": "Incomplete",
-            "fri": "Incomplete",
-            "sat": "Incomplete",
-            "sun": "Incomplete"
-        }
+      "id": 1,
+      "title": "Run a mile",
+      "mon": "Missed",
+      "tue": "Incomplete",
+      "wed": "Missed",
+      "thu": "Incomplete",
+      "fri": "Complete",
+      "sat": "Complete",
+      "sun": "Incomplete"
     }
-]} 
+  ]
+}

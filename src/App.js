@@ -18,21 +18,20 @@ import axios from 'axios'
 function App() {
   
   const [habits, setHabits] = useState([{
-    "id": -1,
-    "title": "null",
-    "day": {
-        "mon": "Incomplete",
-        "tue": "Incomplete",
-        "wed": "Incomplete",
-        "thu": "Incomplete",
-        "fri": "Incomplete",
-        "sat": "Incomplete",
-        "sun": "Incomplete"
-    }
+    id: -1,
+    title: "null",
+    "mon": "Incomplete",
+    "tue": "Incomplete",
+    "wed": "Incomplete",
+    "thu": "Incomplete",
+    "fri": "Incomplete",
+    "sat": "Incomplete",
+    "sun": "Incomplete"
+
 }])
 
   useEffect(() => {
-    axios.get('http://localhost:3001/data')
+    axios.get('http://localhost:3001/habits')
     .then(response => setHabits(response.data))
     .catch(error => console.log(error))
   }, [])
@@ -59,7 +58,7 @@ function App() {
     <div className="App">
       <h1>Habit Tracker</h1>
       <h2>Week of {sundayDate}</h2>
-      <Form />
+      <Form habits={habits} setHabits={setHabits}/>
       <TableContainer component={Paper}>
         <Table className='table' sx={{minWidth: 650}}>
           
@@ -76,7 +75,7 @@ function App() {
           
           <br></br>
           <TableBody>
-            <HabitRow habits={habits}/>
+            <HabitRow habits={habits} setHabits={setHabits}/>
           </TableBody>
         </Table>
       </TableContainer>
