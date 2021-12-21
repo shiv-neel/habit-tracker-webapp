@@ -3,8 +3,10 @@
 .App {
   text-align: center;
   margin: 0;
+  margin-top: 20px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: 'Raleway';
 }

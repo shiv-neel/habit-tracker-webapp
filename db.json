@@ -1,25 +1,36 @@
 {
   "habits": [
     {
-      "id": 0,
-      "title": "Read for 30 minutes",
+      "id": 1639940007839,
+      "title": "DUMMY TASK",
+      "mon": "Incomplete",
+      "tue": "Incomplete",
+      "wed": "Incomplete",
+      "thu": "Incomplete",
+      "fri": "Incomplete",
+      "sat": "Incomplete",
+      "sun": "Missed"
+    },
+    {
+      "id": 1639949017839,
+      "title": "Run a mile",
       "mon": "Incomplete",
       "tue": "Complete",
       "wed": "Incomplete",
-      "thu": "Complete",
-      "fri": "Incomplete",
-      "sat": "Complete",
+      "thu": "Incomplete",
+      "fri": "Missed",
+      "sat": "Incomplete",
       "sun": "Incomplete"
     },
     {
-      "id": 1,
-      "title": "Run a mile",
-      "mon": "Missed",
+      "id": 1640063602369,
+      "title": "Medidate",
+      "mon": "Incomplete",
       "tue": "Incomplete",
-      "wed": "Missed",
-      "thu": "Incomplete",
-      "fri": "Complete",
-      "sat": "Complete",
+      "wed": "Incomplete",
+      "thu": "Complete",
+      "fri": "Incomplete",
+      "sat": "Incomplete",
       "sun": "Incomplete"
     }
   ]

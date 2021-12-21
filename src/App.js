@@ -1,86 +1,118 @@
 import './App.css'
-import {React, useState, useEffect} from 'react'
-import {
-  Paper, 
-  Table,  
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody
-} from '@material-ui/core'
+import {React, useState} from 'react'
+import HabitsApp from './components/Applications/HabitsApp'
+import MorningRoutineApp from './components/Applications/MorningRoutineApp'
+import ReadingListApp from './components/Applications/ReadingListApp'
+import TaskManagerApp from './components/Applications/TaskManagerApp'
+import ExercisePlannerApp from './components/Applications/ExercisePlannerApp'
+import { Button, Drawer, Box, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 
-import DateRow from './components/DateRow'
-import HabitRow from './components/HabitRow'
-import Form from './components/Form'
-import axios from 'axios'
-
-function App() {
+const App = () => {
   
-  const [habits, setHabits] = useState([{
-    id: -1,
-    title: "null",
-    "mon": "Incomplete",
-    "tue": "Incomplete",
-    "wed": "Incomplete",
-    "thu": "Incomplete",
-    "fri": "Incomplete",
-    "sat": "Incomplete",
-    "sun": "Incomplete"
-
-}])
-
-  useEffect(() => {
-    axios.get('http://localhost:3001/habits')
-    .then(response => setHabits(response.data))
-    .catch(error => console.log(error))
-  }, [])
- 
-  const [sundayDate, setSundayDate] = useState('')
-
-  useEffect(() => {
-    
-    const d = new Date()
-    const numDays = (month) => {
-      if (month === 1) return 28
-      else if (month === 0 || month === 2 || month === 4 || 
-                month === 6 || month === 7 || month === 9 ||
-                month === 11
-                ) return 31
-      else return 30
+  const [isMenuOpen, setMenuOpen] = useState(false)
+  const [renderedScreen, setRenderedScreen] = useState(<HabitsApp/>)
+  const services = [
+    {
+      id: 1,
+      page: 'Morning Routine',
+      icon: '🌅',
+      component: <MorningRoutineApp/>
+    },
+    {
+      id: 2,
+      page: 'Habit Tracker',
+      icon: '🔨',
+      component: <HabitsApp/>
+    },
+    {
+      id: 3,
+      page: 'Reading List',
+      icon: '📚',
+      component: <ReadingListApp/>
+    },
+    {
+      id: 4,
+      page: 'Task Manager',
+      icon: '✅',
+      component: <TaskManagerApp/>
+    },
+    {
+      id: 5,
+      page: 'Exercise Planner',
+      icon: '🏋',
+      component: <ExercisePlannerApp/>
     }
-    let day = (d.getDate() - d.getDay() + 1)
-    let month = d.getMonth() + 1
-    let year = d.getFullYear()
-    setSundayDate(month + '/' + day + '/' + year)
-  }, [])
+  ]
+
+  const extras = [
+    {
+      id: 1,
+      page: 'About',
+      icon: 'ℹ️',
+      component: null
+    },
+    {
+      id: 2,
+      page: 'Settings',
+      icon: '⚙️',
+      component: null
+    },
+    {
+      id: 3,
+      page: 'Log out',
+      icon: '🚪',
+      component: null
+    }
+  ]
+
+  const toggleMenu = (isOpen, e) => {
+    setMenuOpen(!isMenuOpen)
+  }
+
+  const list = (
+    <Box
+    sx={{width: 250}}
+    onClick={toggleMenu}
+    >
+      <List>
+        <ListItem>Menu</ListItem>
+        {services.map(service => (
+          <ListItem button key={service.id} onClick={() => setRenderedScreen(service.component)}>
+            <ListItemIcon>
+              {service.icon}
+            </ListItemIcon>
+            <ListItemText primary={service.page}/>
+          </ListItem>
+        ))}
+      </List>
+      <Divider/>
+      <List>
+        {extras.map(service => (
+          
+          <ListItem button key={service.id} onClick={() => setRenderedScreen(service.component)}>
+            <ListItemIcon>
+              {service.icon}
+            </ListItemIcon>
+            <ListItemText primary={service.page}/>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  )
+
+    
   return (
-    <div className="App">
-      <h1>Habit Tracker</h1>
-      <h2>Week of {sundayDate}</h2>
-      <Form habits={habits} setHabits={setHabits}/>
-      <TableContainer component={Paper}>
-        <Table className='table' sx={{minWidth: 650}}>
-          
-            <TableRow>
-              <TableCell style={{minWidth: 100, textAlign: 'center'}}>Habit Name</TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Mon</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Tue</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Wed</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Thu</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Fri</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Sat</p><p>12/14</p></TableCell>
-              <TableCell style={{minWidth: 50, textAlign: 'center'}}><p>Sun</p><p>12/14</p></TableCell>
-            </TableRow>
-          
-          <br></br>
-          <TableBody>
-            <HabitRow habits={habits} setHabits={setHabits}/>
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <div>
+    <Button onClick={toggleMenu}>MENU</Button>
+    <Drawer
+      open={isMenuOpen}
+      onClose={toggleMenu}
+    >
+      {list}
+    </Drawer>
+    {renderedScreen}
     </div>
-  );
+  )
 }
 
 export default App;

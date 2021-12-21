@@ -4,8 +4,7 @@ import './HabitRow.css'
 
 import {
     TableRow,
-    TableCell,
-    TableBody
+    TableCell
   } from '@material-ui/core'
 
 const HabitRow = (props) => {
@@ -14,7 +13,7 @@ const HabitRow = (props) => {
             habits.map(habit =>
             <TableRow>
                 <TableCell key={habit.id}>{habit.title}</TableCell>
-                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='mon'>{habit['mon']}</Cell></TableCell>
+                <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='mon'></Cell></TableCell>
                 <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='tue'>{habit['tue']}</Cell></TableCell>
                 <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='wed'>{habit['wed']}</Cell></TableCell>
                 <TableCell><Cell habits={habits} setHabits={props.setHabits} id={habit.id} day='thu'>{habit['thu']}</Cell></TableCell>

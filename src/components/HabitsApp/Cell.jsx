@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import { TableCell, Chip } from '@material-ui/core'
+import { Chip } from '@material-ui/core'
 import './HabitRow.css'
 import axios from 'axios'
 
@@ -13,30 +13,34 @@ const Cell = (props) => {
             case 'Complete':
                 setText('Complete')
                 setColor('primary')
+                //console.log(`Updated state of ${day} to Complete`)
                 break
             case 'Incomplete':
                 setText('Incomplete')
                 setColor('default')
+                //console.log(`Updated state of ${day} to Incomplete`)
                 break
             case 'Missed':
                 setText('Missed')
                 setColor('secondary')
+                //console.log(`Updated state of ${day} to Missed`)
+                break
+            default:
+                console.log()
                 break
         }
     }, [])
+
+    
     
 
     const updateBackend = (id, day, newState) => {
         var habitToUpdate = props.habits.find(habit => habit.id === id)
         habitToUpdate[day] = newState
-        console.log(habitToUpdate)
         axios.put(`http://localhost:3001/habits/${id}`, habitToUpdate)
         .then(response => {
-            console.log(response.data)
-        axios.get('http://localhost:3001/habits')
-        
+        axios.get('http://localhost:3001/habits')    
             .then(response => {
-                console.log(response.data)
                 props.setHabits(response.data)
             })
         })
@@ -62,6 +66,7 @@ const Cell = (props) => {
                 setColor('default')
                 setState(-1)
                 updateBackend(props.id, day, 'Incomplete')
+                break
             default:
                 console.log()
         }
